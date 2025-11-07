@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saudagara Exports Enhancement Plan</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Core Palette
+                        'primary': '#0F766E', // Deep Teal - Main Brand Color
+                        'secondary': '#4B5563', // Dark Gray - Text
+                        'background': '#F9FAFB', // Very Light Gray
+                        'accent': '#34D399', // Emerald Green - Compliance/Success
+                        
+                        // New Theme Colors for Card Coding
+                        'theme-system': '#0F766E', // Teal
+                        'theme-people': '#059669', // Emerald
+                        'theme-product': '#F59E0B', // Amber/Orange
+                        'theme-infra': '#64748B', // Slate
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* 1. Global Fade-in animation for professional loading */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        /* 2. Card Hover Lift and Shadow Effect */
+        .plan-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-background font-sans min-h-screen p-4 sm:p-8">
+
+    <!-- Header -->
+    <header class="text-center mb-8 sm:mb-12">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
+            Saudagara Exports
+        </h1>
+        <p class="text-xl sm:text-2xl font-light text-primary mt-2">
+            Factory & Business Enhancement Plan
+        </p>
+    </header>
+
+    <!-- Main Content Container (Mobile-first layout) - Added fade-in class -->
+    <main class="max-w-7xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden fade-in">
+
+        <!-- Tab Navigation -->
+        <div class="flex border-b border-gray-200">
+            <!-- Updated classes to use primary (Teal) color -->
+            <button id="tab-factory" onclick="switchTab('factory')" class="tab-button w-1/2 py-4 text-sm sm:text-base font-semibold transition-all duration-300 ease-in-out border-b-2 border-primary text-primary bg-primary/10 focus:outline-none">
+                Factory System Enhancement
+            </button>
+            <button id="tab-merch" onclick="switchTab('merch')" class="tab-button w-1/2 py-4 text-sm sm:text-base font-semibold text-gray-600 hover:text-primary hover:bg-gray-50 border-b-2 border-transparent transition-all duration-300 ease-in-out focus:outline-none">
+                Merchandising & Business Plan
+            </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="p-4 sm:p-8">
+            
+            <!-- Factory System Enhancement Content -->
+            <div id="content-factory" class="tab-content space-y-8">
+                <p class="text-lg text-secondary border-l-4 border-accent pl-4 italic">
+                    Focuses on internal systems, infrastructure, team structure, and compliance to boost discipline, productivity, and quality.
+                </p>
+
+                <!-- Plan Cards -->
+                <div id="factory-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Data will be populated here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Merchandising & Business Enhancement Content -->
+            <div id="content-merch" class="tab-content hidden space-y-8">
+                <p class="text-lg text-secondary border-l-4 border-accent pl-4 italic">
+                    Focuses on improving buyer communication, digital visibility, professional hospitality, and accurate documentation/approvals.
+                </p>
+
+                <!-- Plan Cards -->
+                <div id="merch-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Data will be populated here by JavaScript -->
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Mapping of themes to Tailwind utility classes
+        const themeMap = {
+            'system': {
+                colorClass: 'text-theme-system',
+                bgColorLight: 'bg-theme-system/10',
+                borderColor: 'border-theme-system',
+                headingText: 'text-theme-system'
+            },
+            'people': {
+                colorClass: 'text-theme-people',
+                bgColorLight: 'bg-theme-people/10',
+                borderColor: 'border-theme-people',
+                headingText: 'text-theme-people'
+            },
+            'product': {
+                colorClass: 'text-theme-product',
+                bgColorLight: 'bg-theme-product/10',
+                borderColor: 'border-theme-product',
+                headingText: 'text-theme-product'
+            },
+            'infra': {
+                colorClass: 'text-theme-infra',
+                bgColorLight: 'bg-theme-infra/10',
+                borderColor: 'border-theme-infra',
+                headingText: 'text-theme-infra'
+            },
+        };
+
+
+        // Data derived from the CSV files with Theme and updated Icons
+        const factoryData = [
+            {
+                category: "Factory System Setup",
+                action: "Implement structured systems for clear authority levels",
+                purpose: "Improve discipline, productivity, and accountability.",
+                icon: '&#x1F4AF;', // 100 Points (Discipline)
+                theme: 'people'
+            },
+            {
+                category: "Factory Management Software",
+                action: "Introduce ERP/software for order tracking, costing, gate pass, production status, etc.",
+                purpose: "Centralized data access and efficiency in management.",
+                icon: '&#x1F4BB;', // Laptop/System
+                theme: 'system'
+            },
+            {
+                category: "Sample Development & CAD Team",
+                action: "Set up a dedicated sample room with CAD pattern-making system.",
+                purpose: "Faster development and buyer satisfaction.",
+                icon: '&#x1F458;', // Sewing Thread
+                theme: 'product'
+            },
+            {
+                category: "Accounts & Documentation Team",
+                action: "Streamline financial and shipment documentation process.",
+                purpose: "Accuracy and transparency.",
+                icon: '&#x1F4B5;', // Dollar Banknote (Finance)
+                theme: 'infra'
+            },
+            {
+                category: "HR & Compliance Team",
+                action: "Strengthen HR for worker welfare, compliance audits, and training.",
+                purpose: "Maintain factory compliance standards.",
+                icon: '&#x1F465;', // Group/HR
+                theme: 'people'
+            },
+            {
+                category: "Accessories Team",
+                action: "Form a sourcing and inventory control team for trims and accessories.",
+                purpose: "Smooth production flow.",
+                icon: '&#x1F527;', // Wrench/Tool (Supply Chain)
+                theme: 'product'
+            },
+            {
+                category: "Fabric Team",
+                action: "Dedicated team for sourcing, inspection, and inventory management.",
+                purpose: "Quality and timely fabric availability.",
+                icon: '&#x1F9F5;', // Spool of Thread
+                theme: 'product'
+            },
+            {
+                category: "Production Team",
+                action: "Set up organized production lines with clear targets and supervisors.",
+                purpose: "Increase efficiency and reduce wastage.",
+                icon: '&#x1F3ED;', // Factory
+                theme: 'people'
+            },
+            {
+                category: "Quality Team",
+                action: "Strengthen inline and final inspection teams.",
+                purpose: "Ensure product consistency and buyer satisfaction.",
+                icon: '&#x2705;', // Check mark/Quality
+                theme: 'people'
+            },
+            {
+                category: "Civil Work",
+                action: "Build/renovate areas for security room, car/bike parking, and better layout",
+                purpose: "Improve infrastructure and safety.",
+                icon: '&#x1F3D7;&#xFE0F;', // Building/Civil
+                theme: 'infra'
+            },
+            {
+                category: "Fabric Storage Area",
+                action: "Set up organized fabric storage with rack and bin system.",
+                purpose: "Proper stock management and control.",
+                icon: '&#x1F4E6;', // Box/Storage
+                theme: 'infra'
+            },
+            {
+                category: "Lab Setup",
+                action: "Area Allocate a clean, temperature-controlled space for testing and shade approvals.",
+                purpose: "To maintain testing accuracy and professionalism.",
+                icon: '&#x1F9EA;', // Test tube/Lab
+                theme: 'system'
+            },
+            {
+                category: "Printing & Embroidery (Optional)",
+                action: "Not mandatory but beneficial to have in-house facilities.",
+                purpose: "Adds value and faster turnaround.",
+                icon: '&#x1F58A;&#xFE0F;', // Pen/Process
+                theme: 'product'
+            },
+        ];
+
+        const merchData = [
+            {
+                category: "Company Profile",
+                action: "Develop a professional factory profile (digital & printed).",
+                purpose: "For buyer presentation and marketing use.",
+                icon: '&#x1F4DC;', // Scroll/Profile
+                theme: 'infra'
+            },
+            {
+                category: "Product Catalog",
+                action: "Prepare catalog with product range, styles, and capabilities.",
+                purpose: "Helps in buyer communication and branding.",
+                icon: '&#x1F4DA;', // Books/Catalog
+                theme: 'product'
+            },
+            {
+                category: "Website",
+                action: "Launch an official website showing capabilities, certifications, and contact info.",
+                purpose: "Digital visibility and buyer reach.",
+                icon: '&#x1F310;', // Globe/Web
+                theme: 'system'
+            },
+            {
+                category: "LinkedIn Enhancement",
+                action: "Create/enhance company LinkedIn page for branding and talent reach.",
+                purpose: "Build online professional presence.",
+                icon: '&#x1F4C8;', // Chart/Branding
+                theme: 'people'
+            },
+            {
+                category: "Buyer Conference Room",
+                action: "Set up a well-equipped conference room with display, presentation, and discussion facilities.",
+                purpose: "Professional environment for buyer meetings.",
+                icon: '&#x1F4C6;', // Calendar/Meeting
+                theme: 'infra'
+            },
+            {
+                category: "Showroom",
+                action: "Create a showroom displaying best products and capabilities.",
+                purpose: "Strengthen buyer confidence and brand image.",
+                icon: '&#x1F45C;', // Handbag/Display
+                theme: 'infra'
+            },
+            {
+                category: "Merchandising Department",
+                action: "Strengthen team structure, define clear responsibilities and follow-up systems",
+                purpose: "Improve coordination between buyer and production.",
+                icon: '&#x1F4BC;', // Briefcase/Dept
+                theme: 'people'
+            },
+            {
+                category: "Buyer Restroom & Amenities",
+                action: "Provide clean and comfortable space for visiting buyers",
+                purpose: "Professional hospitality",
+                icon: '&#x1F6C0;', // Bath/Hospitality
+                theme: 'infra'
+            },
+            {
+                category: "Official Car for Buyer Pickup & Meetings",
+                action: "Arrange a dedicated company car for buyer airport pickup, meetings, and local visits",
+                purpose: "Enhance buyer experience and professional image.",
+                icon: '&#x1F697;', // Car/Transport
+                theme: 'infra'
+            },
+            {
+                category: "Light Box / Colour Cabinet",
+                action: "For shade matching under different light sources",
+                purpose: "Ensures accurate color approvals for buyers.",
+                icon: '&#x1F4A1;', // Light bulb/Color
+                theme: 'product'
+            },
+            {
+                category: "Laptop / Desktop with Monitor",
+                action: "Provide each merchandiser a laptop or desktop with an extended monitor.",
+                purpose: "For easy handling of buyer communication, order tracking, and data analysis.",
+                icon: '&#x1F5A5;&#xFE0F;', // Desktop
+                theme: 'system'
+            },
+            {
+                category: "Official Email ID",
+                action: "Assign company domain email IDs for all merchandisers.",
+                purpose: "Ensures professional and secure buyer communication.",
+                icon: '&#x2709;&#xFE0F;', // Envelope/Email
+                theme: 'system'
+            },
+            {
+                category: "Printer & Scanner",
+                action: "Dedicated printer/scanner in merchandising area.",
+                purpose: "Quick documentation, approvals, and costing prints.",
+                icon: '&#x1F5A8;&#xFE0F;', // Printer
+                theme: 'system'
+            },
+            {
+                category: "Pantone Shade Book",
+                action: "Provide Pantone color books for color matching and approval. Accurate color communication with buyers and dyeing units.",
+                purpose: "Accurate color communication with buyers and dyeing units.",
+                icon: '&#x1F3A8;', // Art palette/Shade
+                theme: 'product'
+            },
+            {
+                category: "Network Connection",
+                action: "high-speed internet and shared drives",
+                purpose: "Enables smooth communication, data sharing, and order tracking.",
+                icon: '&#x1F4E1;', // Antenna/Network
+                theme: 'system'
+            },
+        ];
+
+        // Function to create a plan card HTML (UPDATED FOR THEMATIC COLORING)
+        function createCard(item) {
+            const themeStyle = themeMap[item.theme];
+
+            return `
+                <div class="plan-card bg-white p-6 rounded-xl shadow-lg border-t-4 ${themeStyle.borderColor} transition-all duration-300 flex flex-col">
+                    <div class="flex items-start mb-4">
+                        <span class="text-3xl mr-4 ${themeStyle.colorClass}" aria-hidden="true">${item.icon}</span>
+                        <h3 class="text-xl font-bold text-gray-800 leading-tight">${item.category}</h3>
+                    </div>
+                    
+                    <div class="space-y-3 flex-grow">
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                            <p class="text-xs font-semibold uppercase text-secondary mb-1">Action Plan</p>
+                            <p class="text-base text-gray-700">${item.action}</p>
+                        </div>
+                        <div class="${themeStyle.bgColorLight} p-3 rounded-lg border border-gray-200/50">
+                            <p class="text-xs font-semibold uppercase ${themeStyle.headingText} mb-1">Expected Outcome</p>
+                            <p class="text-base text-gray-700">${item.purpose}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to populate the dashboard with data (Unchanged)
+        function populateDashboard() {
+            const factoryCardsContainer = document.getElementById('factory-cards');
+            factoryCardsContainer.innerHTML = factoryData.map(createCard).join('');
+
+            const merchCardsContainer = document.getElementById('merch-cards');
+            merchCardsContainer.innerHTML = merchData.map(createCard).join('');
+        }
+
+        // Function to switch between tabs (Updated classes for new colors)
+        function switchTab(tabId) {
+            const tabs = ['factory', 'merch'];
+            tabs.forEach(id => {
+                const tabButton = document.getElementById(`tab-${id}`);
+                const tabContent = document.getElementById(`content-${id}`);
+
+                if (id === tabId) {
+                    // Activate the selected tab
+                    tabButton.classList.add('border-primary', 'text-primary', 'bg-primary/10');
+                    tabButton.classList.remove('border-transparent', 'text-gray-600', 'hover:text-primary', 'hover:bg-gray-50');
+                    tabContent.classList.remove('hidden');
+                } else {
+                    // Deactivate other tabs
+                    tabButton.classList.remove('border-primary', 'text-primary', 'bg-primary/10');
+                    tabButton.classList.add('border-transparent', 'text-gray-600', 'hover:text-primary', 'hover:bg-gray-50');
+                    tabContent.classList.add('hidden');
+                }
+            });
+        }
+
+        // Initialize the dashboard on load (Unchanged)
+        window.onload = () => {
+            populateDashboard();
+            switchTab('factory'); // Default to the Factory tab
+        };
+    </script>
+
+</body>
+</html>
