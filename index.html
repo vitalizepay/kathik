@@ -1,217 +1,215 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2D Creation - Precision. Partnership. Performance.</title>
-    <meta name="description" content="Leading apparel company providing knowledge-based costings, flexible volumes, shorter lead times, and real-time communication.">
-    <meta name="author" content="2D Creation" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karthik | Digital Contact Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    <meta property="og:title" content="2D Creation - Precision. Partnership. Performance.">
-    <meta name="twitter:title" content="2D Creation - Precision. Partnership. Performance.">
-    <meta property="og:description" content="Leading apparel company providing knowledge-based costings, flexible volumes, shorter lead times, and real-time communication.">
-    <meta name="twitter:description" content="Leading apparel company providing knowledge-based costings, flexible volumes, shorter lead times, and real-time communication.">
-    <link rel="icon" type="image/png" href="/favicon.png">
-
+    
     <style>
         :root {
-            --bg-main: #0a0a0a;
-            --card-inner: #161616;
-            --accent: #00d2ff;
+            --primary-dark: #0a0a0a;
+            --card-bg: #141414;
+            --accent: #0077b5; /* LinkedIn Blue */
             --text-white: #ffffff;
-            --text-muted: #888888;
+            --text-dim: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-main);
+            background-color: var(--primary-dark);
             color: var(--text-white);
-            margin: 0;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
         .contact-card {
             width: 100%;
-            max-width: 400px;
-            background: var(--card-inner);
-            border-radius: 24px;
+            max-width: 380px;
+            background: var(--card-bg);
+            border-radius: 30px;
             overflow: hidden;
             border: 1px solid #222;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            margin-top: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            text-align: center;
         }
 
-        .card-header {
-            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
-            height: 120px;
+        .header-gradient {
+            background: linear-gradient(135deg, #0077b5 0%, #00a0dc 100%);
+            height: 100px;
             position: relative;
         }
 
-        .profile-img-container {
+        .avatar-container {
             position: absolute;
             bottom: -50px;
             left: 50%;
             transform: translateX(-50%);
         }
 
-        .profile-img {
+        .avatar {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: #161616;
-            padding: 5px;
-            border: 4px solid #161616;
+            background: var(--card-bg);
+            border: 5px solid var(--card-bg);
             display: flex;
             justify-content: center;
             align-items: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
-        .profile-img i {
-            font-size: 2.5rem;
+        .avatar i {
+            font-size: 3rem;
             color: var(--accent);
         }
 
-        .card-body {
-            padding: 65px 25px 30px;
-            text-align: center;
+        .card-content {
+            padding: 65px 25px 35px;
         }
 
-        .card-body h1 { 
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem; 
-            margin-bottom: 5px; 
-            font-weight: 700; 
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
         }
 
-        .card-body .title { 
-            font-family: 'Lato', sans-serif;
-            color: var(--accent); 
-            font-size: 0.85rem; 
-            font-weight: 400; 
-            letter-spacing: 2px; 
-            margin-bottom: 25px; 
-            text-transform: uppercase; 
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
 
-        .save-btn {
+        .action-list {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            padding: 18px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            text-decoration: none;
+            color: var(--text-white);
+            margin-bottom: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .action-item:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .action-item i {
+            width: 40px;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .info-box span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-bottom: 2px;
+        }
+
+        .info-box p {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .save-button {
+            display: block;
             background: var(--text-white);
             color: #000;
-            padding: 14px 32px;
+            padding: 15px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 30px;
+            margin-top: 10px;
             transition: transform 0.2s;
         }
 
-        .save-btn:active { transform: scale(0.95); }
-
-        .info-list { text-align: left; margin-bottom: 30px; }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #222;
+        .save-button:active {
+            transform: scale(0.96);
         }
 
-        .info-item i { width: 40px; color: var(--accent); font-size: 1.1rem; }
-
-        .info-content p { font-size: 0.7rem; color: var(--text-muted); margin: 0; text-transform: uppercase; letter-spacing: 1px; }
-        .info-content span { font-size: 0.95rem; font-weight: 400; color: var(--text-white); }
-
-        .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-
-        .social-box {
-            background: #222;
-            padding: 15px;
-            border-radius: 15px;
-            text-decoration: none;
-            color: #fff;
-            transition: background 0.2s;
-            display: flex;
-            justify-content: center;
+        .footer-logo {
+            margin-top: 30px;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            opacity: 0.5;
         }
-
-        .social-box:hover { background: #282828; }
     </style>
 </head>
-
-  <body>
-    <div id="root"></div>
+<body>
 
     <div class="contact-card">
-        <div class="card-header">
-            <div class="profile-img-container">
-                <div class="profile-img">
-                    <i class="fas fa-fingerprint"></i>
+        <div class="header-gradient">
+            <div class="avatar-container">
+                <div class="avatar">
+                    <i class="fas fa-user-circle"></i>
                 </div>
             </div>
         </div>
 
-        <div class="card-body">
-            <h1>2D Creation</h1>
-            <p class="title">Precision. Partnership. Performance.</p>
+        <div class="card-content">
+            <h1>Karthik</h1>
+            <p class="subtitle">2D Creation</p>
 
-            <a href="https://wa.me/919994104442?text=Hi%202D%20Creation!%20Save%20this%20contact." class="save-btn">
-                <i class="fas fa-user-plus"></i> SAVE CONTACT
-            </a>
+            <div class="action-list">
+                <a href="tel:+919791881884" class="action-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="info-box">
+                        <span>Call me</span>
+                        <p>+91 97918 81884</p>
+                    </div>
+                </a>
 
-            <div class="info-list">
-                <div class="info-item">
-                    <i class="fas fa-phone"></i>
-                    <div class="info-content">
-                        <p>Mobile</p>
-                        <span>+91 99941 04442</span>
+                <a href="https://wa.me/919791881884" class="action-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div class="info-box">
+                        <span>Message</span>
+                        <p>WhatsApp</p>
                     </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-envelope"></i>
-                    <div class="info-content">
-                        <p>Email</p>
-                        <span>hello@2dcreation.in</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/karthick-subramaniamm/" target="_blank" class="action-item">
+                    <i class="fab fa-linkedin-in"></i>
+                    <div class="info-box">
+                        <span>LinkedIn</span>
+                        <p>Karthick Subramaniam</p>
                     </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-globe"></i>
-                    <div class="info-content">
-                        <p>Website</p>
-                        <span>www.2dcreation.in</span>
-                    </div>
-                </div>
+                </a>
             </div>
 
-            <div class="social-grid">
-                <a href="https://wa.me/919994104442" class="social-box">
-                    <i class="fab fa-whatsapp" style="color:#25D366;"></i>
-                </a>
-                <a href="https://www.instagram.com/domine_mens_clothing/" class="social-box">
-                    <i class="fab fa-instagram" style="color:#E1306C;"></i>
-                </a>
-                <a href="https://www.facebook.com/people/Domine-Mens-Clothing/61580278718458/" class="social-box">
-                    <i class="fab fa-facebook" style="color:#1877F2;"></i>
-                </a>
+            <a href="tel:+919791881884" class="save-button">
+                ADD TO CONTACTS
+            </a>
+
+            <div class="footer-logo">
+                2DCREATION.IN
             </div>
         </div>
     </div>
 
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+</body>
 </html>
